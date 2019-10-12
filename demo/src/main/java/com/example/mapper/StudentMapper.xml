@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.entity.Student">
+    <!-- resultMap标签:映射实体与表
+	 type属性：表示实体全路径名
+	 id属性：为实体与表的映射取一个任意的唯一的名字
+	-->
+
+    <resultMap id="studentMap" type="student">
+        <id property="id" column="student_id"/>
+        <result property="name" column="student_name"/>
+        <result property="sal" column="student_sal"/>
+    </resultMap>
+    <insert id="add" parameterType="student">
+        insert into student(id,name,sal) values(#{id},#{name},#{sal})
+    </insert>
+    <select id="findById" parameterType="int" resultType="student">
+        select id,name,sal from student where id=#{id}
+    </select>
+
+    <select id="findAll" resultType="student">
+        select id,name,sal from student
+    </select>
+
+    <update id="update" parameterType="student">
+        update student set name=#{name},sal=#{sal},where id=#{id}
+    </update>
+    <delete id=" delete" parameterType="student">
+        delete from student where id=#{id}
+    </delete>
+    <select id="findAllByNameWithFy" parameterType="map" resultMap="studentMap">
+        select student_id,student_name,student_sal
+        from student_copy
+        where student_name like #{pname}
+        limit #{pstart},#{psize}
+    </select>
+
+</mapper>
