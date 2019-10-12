@@ -3,11 +3,14 @@ package com.example.Dao;
 import com.example.entity.Student;
 import com.example.utils.MyBatisUtil;
 import org.apache.ibatis.session.SqlSession;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.ComponentScans;
+import org.springframework.stereotype.Service;
 
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-
+@Service
 public class StudentServiceImp implements StudentService{
 
     @Override
@@ -128,12 +131,12 @@ public class StudentServiceImp implements StudentService{
 
     public static void main(String[] args) throws Exception {
         StudentServiceImp dao=new StudentServiceImp();
-//        dao.add(new Student(1,"嘻嘻",8000D));
-//        dao.add(new Student(2,"蛤蛤",9000D));
-//        dao.add(new Student(3,"666",10000D));
-//        dao.add(new Student(4,"111",11000D));
-
-        Student student = dao.findById(4);
+////        dao.add(new Student(1,"嘻嘻",8000D));
+////        dao.add(new Student(2,"蛤蛤",9000D));
+////        dao.add(new Student(3,"666",10000D));
+////        dao.add(new Student(4,"111",11000D));
+//
+        Student student = dao.findById(1);
         System.out.println(student.getId()+"--"+student.getName()+"--"+student.getSal());
 
     }
